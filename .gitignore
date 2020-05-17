@@ -1,0 +1,9 @@
+# Vim temporary swap files
+*.swp
+*.swo
+
+# Backed up copies of old files
+*.bak
+
+# Generated SSL key file for SSL python http.server
+*.pem
