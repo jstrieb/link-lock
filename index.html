@@ -17,21 +17,47 @@
   </style>
 
   <script type="text/javascript" src="b64.js"></script>
+  <script type="text/javascript" src="api.js"></script>
   <script type="text/javascript">
     function error(text) {
       let errorDisplay = document.querySelector("#errortext");
-      errorDisplay.innerText = text;
+      errorDisplay.innerText = `Error: ${text}`;
     }
 
     function main() {
       if (window.location.hash) {
+        // Fail if the b64 library or API was not loaded
+        if (!("b64" in window)) {
+          error("Base64 library not loaded.");
+          return;
+        }
+        if (!("apiVersions" in window)) {
+          error("API library not loaded.");
+          return;
+        }
+
         // Try to get page data from the URL if possible
         const hash = window.location.hash.slice(1);
+        let params;
         try {
-          const params = JSON.parse(b64.decode(hash));
+          params = JSON.parse(b64.decode(hash));
         } catch {
           error("The link appears corrupted.");
+          return;
         }
+
+        // Check that all required parameters encoded in the URL are present
+        if (!("v" in params && "e" in params)) {
+          error("The link appears corrupted. The encoded URL is missing necessary parameters.");
+          return;
+        }
+
+        // Check that the version in the parameters is valid
+        if (!(params["v"] in apiVersions)) {
+          error("Unsupported API version. The link may be corrupted.");
+          return;
+        }
+        const api = apiVersions[params["v"]];
       } else {
         // Otherwise redirect to the creator
         // TODO: Uncomment
@@ -53,6 +79,7 @@
   </div>
   </noscript>
 
+  <!-- Display errors in a big red box -->
   <div class="main red-border">
   <p id="errortext">Error</p>
   <button onclick="main()">Try again</button>
