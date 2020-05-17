@@ -1,0 +1,59 @@
+/**
+ * Created by Jacob Strieb
+ * May 2020
+ */
+
+
+/*******************************************************************************
+ * Element styles
+ ******************************************************************************/
+
+html {
+  font-family: sans-serif;
+  padding: 10px;
+}
+
+body {
+  padding: 15px;
+  display: block;
+  margin: auto;
+  max-width: 80ch;
+}
+
+p {
+  text-align: justify;
+}
+
+button {
+  padding: 11px;
+  background: rgb(95, 158, 160);
+  color: white;
+  border: 0.5px solid white;
+  border-radius: 5px;
+  font-weight: bold;
+  margin-top: 5px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+input[type="checkbox"] {
+  cursor: pointer;
+  margin-right: 0;
+}
+
+hr {
+  margin-top: 3em;
+  margin-bottom: 3em;
+  border: 0;
+  border-top: 0.5px solid black;
+}
+
+
+/*******************************************************************************
+ * Classes
+ ******************************************************************************/
+
+.red-border {
+  border: 3px solid red;
+  padding: 2em;
+}
