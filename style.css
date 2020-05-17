@@ -57,3 +57,7 @@ hr {
   border: 3px solid red;
   padding: 2em;
 }
+
+.error, .error p {
+  text-align: center;
+}

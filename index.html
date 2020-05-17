@@ -10,11 +10,6 @@
   <title>Link Lock - Password-protect links</title>
 
   <link rel="stylesheet" href="style.css" type="text/css" />
-  <style>
-    .main, .main p {
-      text-align: center;
-    }
-  </style>
 
   <script type="text/javascript" src="b64.js"></script>
   <script type="text/javascript" src="api.js"></script>
@@ -57,11 +52,11 @@
           error("Unsupported API version. The link may be corrupted.");
           return;
         }
+
         const api = apiVersions[params["v"]];
       } else {
         // Otherwise redirect to the creator
-        // TODO: Uncomment
-        // window.location.replace("./create");
+        window.location.replace("./create");
       }
     }
   </script>
@@ -71,18 +66,18 @@
   <!-- Explanation for those who do not have JavaScript enabled -->
   <noscript>
   <div class="red-border">
-  <p>If you are seeing this, it means that you have JavaScript disabled. Please enable JavaScript to access the locked link.</p>
+    <p>If you are seeing this, it means that you have JavaScript disabled. Please enable JavaScript to access the locked link.</p>
 
-  <p>This application is entirely programmed in JavaScript. This was done intentionally, so that all encryption and decryption happens client-side. This means the code runs as a distributed application, relying only on GitHub Pages for infrastructure. It also means that no data about locked links is ever stored on a server. The code is designed to be auditable so users can investigate what is happening behind the scenes.</p>
+    <p>This application is entirely programmed in JavaScript. This was done intentionally, so that all encryption and decryption happens client-side. This means the code runs as a distributed application, relying only on GitHub Pages for infrastructure. It also means that no data about locked links is ever stored on a server. The code is designed to be auditable so users can investigate what is happening behind the scenes.</p>
 
-  <p>If you still want to run the application, I encourage you to clone the <a href="https://github.com/jstrieb/link-lock">source code on GitHub</a>. That way you can disable JavaScript only for trusted files on your local machine.</p>
+    <p>If you still want to run the application, I encourage you to clone the <a href="https://github.com/jstrieb/link-lock">source code on GitHub</a>. That way you can disable JavaScript only for trusted files on your local machine.</p>
   </div>
   </noscript>
 
   <!-- Display errors in a big red box -->
-  <div class="main red-border">
-  <p id="errortext">Error</p>
-  <button onclick="main()">Try again</button>
+  <div class="error red-border">
+    <p id="errortext">Error</p>
+    <button onclick="main()">Try again</button>
   </div>
 </body>
 

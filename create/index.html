@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="author" content="Jacob Strieb" />
+  <meta name="description" content="Password protect links using AES in the browser." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+
+  <title>Link Lock - Password-protect links</title>
+
+  <link rel="stylesheet" href="../style.css" type="text/css" />
+
+  <script type="text/javascript" src="../b64.js"></script>
+  <script type="text/javascript" src="../api.js"></script>
+  <script type="text/javascript">
+    function error(text) {
+      document.querySelector(".error").style.display = "inherit";
+      document.querySelector("#errortext").innerText = `Error: ${text}`;
+    }
+
+    function main() {
+      // TODO: Remove
+      console.log("Running main");
+
+      // Fail if the b64 library or API was not loaded
+      if (!("b64" in window)) {
+        error("Base64 library not loaded.");
+        return;
+      }
+      if (!("apiVersions" in window)) {
+        error("API library not loaded.");
+        return;
+      }
+    }
+  </script>
+  <script type="text/javascript" src="create.js"></script>
+</head>
+
+<body onload="main()">
+  <!-- Explanation for those who do not have JavaScript enabled -->
+  <noscript>
+  <div style="border: 3px solid red; padding: 2em;">
+    <p>If you are seeing this, it means that you have JavaScript disabled. As a result, the application will not work properly for you. For example, none of the buttons will work.</p>
+
+    <p>This application is entirely programmed in JavaScript. This was done intentionally, so that all encryption and decryption happens client-side. This means the code runs as a distributed application, relying only on GitHub Pages for infrastructure. It also means that no data about locked links is ever stored on a server. The code is designed to be auditable so users can investigate what is happening behind the scenes.</p>
+
+    <p>If you still want to run the application, I encourage you to clone the <a href="https://github.com/jstrieb/link-lock">source code on GitHub</a>. That way you can disable JavaScript only for trusted files on your local machine.</p>
+  </div>
+  </noscript>
+
+  <!-- Display errors in a big red box -->
+  <div class="error red-border" style="display: none">
+    <p id="errortext">Error</p>
+    <button onclick="main()">Try again</button>
+  </div>
+
+  <h1>Link Lock</h1>
+</body>
+
+</html>
