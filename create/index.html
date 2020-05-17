@@ -20,9 +20,6 @@
     }
 
     function main() {
-      // TODO: Remove
-      console.log("Running main");
-
       // Fail if the b64 library or API was not loaded
       if (!("b64" in window)) {
         error("Base64 library not loaded.");
@@ -56,6 +53,61 @@
   </div>
 
   <h1>Link Lock</h1>
+  <div>
+    <p>Link Lock adds passwords to links. Enter a link and password below, and click "Encrypt" to generate a locked link. When someone visits a locked link, it will not unlock unless they enter the correct password. If the password is correct, they will be redirected to the original link.</p>
+    <p>To bookmark a locked link, drag it from the output box to the bookmarks bar. Alternatively, visit the locked link and bookmark it before entering the password.</p>
+    <p>This application uses encryption to make it nearly impossible to recover the original link from the locked one. This means that a lost password will make locked links unrecoverable. Randomizing the salt and initialization vector in the advanced options will make the encryption more secure at the cost of a longer link. Read more about the encryption used on the <a href="https://github.com/jstrieb/link-lock" target="_blank">Link Lock GitHub repository</a>.</p>
+    <p>Link Lock runs entirely in the browser, so nobody can see the links you are locking and unlocking. No data is ever stored on any server. There is no tracking, no spying, and no cookies. If you do not trust it, read the source code, or run your own instance.</p>
+  </div>
+
+  <div class="form">
+    <div class="labeled-input">
+      <label for="url">link</label>
+      <input type="url" id="url" placeholder="" oninvalid="this.setCustomValidity('Please enter a valid URL. Make sure to include \'http://\'')" oninput="this.setCustomValidity('')" autofocus required />
+    </div>
+    <div class="labeled-input hint">
+      <label for="url">hint (optional)</label>
+      <input type="text" id="hint" />
+    </div>
+    <div class="split-row">
+      <div class="labeled-input password">
+        <label for="password">password</label>
+        <input type="password" id="password" />
+      </div>
+      <div class="labeled-input confirm-password">
+        <label for="confirm-password">confirm password</label>
+        <input type="password" id="confirm-password" oninput="this.setCustomValidity('')" />
+      </div>
+    </div>
+
+    <label onclick="advanced()" id="advanced-label" for="advanced">&#x25B8; advanced</label>
+    <div class="advanced" id="advanced">
+      <div class="labeled-input">
+        <label for="iv">random initialization vector</label>
+        <input type="checkbox" id="iv" checked />
+      </div>
+      <div class="labeled-input">
+        <label for="salt">random salt</label>
+        <input type="checkbox" id="salt" />
+      </div>
+    </div>
+    <button id="encrypt" onclick="enc()">Encrypt</button>
+  </div>
+
+  <hr />
+
+  <div class="output">
+    <label for="output">output</label>
+    <input type="text" id="output" readonly/>
+    <button id="copy" onclick="copy('output')">Copy</button>
+    <a href="" id="open" target="_blank"><button>Open in New Tab</button></a>
+    <p class="alert">Copied</p>
+  </div>
+
+  <footer>
+  <hr />
+  <p class="copyright">Created by <a href="https://jstrieb.github.io">Jacob Strieb</a>.</p>
+  </footer>
 </body>
 
 </html>
