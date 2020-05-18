@@ -70,7 +70,7 @@
   <div class="form">
     <div class="labeled-input">
       <label for="url">link</label>
-      <input type="url" id="url" placeholder="" oninvalid="this.setCustomValidity('Please enter a valid URL. Make sure to include \'http://\'')" oninput="this.setCustomValidity('')" autofocus required />
+      <input type="url" id="url" placeholder="" oninvalid="this.setCustomValidity('Please enter a valid URL. Make sure to include \'http://\' at the beginning.')" oninput="this.setCustomValidity('')" autofocus required />
     </div>
     <div class="labeled-input hint">
       <label for="url">hint (optional)</label>
@@ -88,7 +88,7 @@
     </div>
 
     <!-- Advanced options (JavaScript-activated dropdown) -->
-    <label onclick="advanced()" id="advanced-label" for="advanced">&#x25B8; advanced</label>
+    <label onclick="onAdvanced()" id="advanced-label" for="advanced">&#x25B8; advanced</label>
     <div class="advanced" id="advanced">
       <div class="labeled-input">
         <label for="iv">random initialization vector</label>
@@ -99,7 +99,7 @@
         <input type="checkbox" id="salt" />
       </div>
     </div>
-    <button id="encrypt" onclick="enc()">Encrypt</button>
+    <button id="encrypt" onclick="onEncrypt()">Encrypt</button>
   </div>
 
   <hr />
@@ -108,7 +108,7 @@
   <div class="output">
     <label for="output">output</label>
     <input type="text" id="output" readonly/>
-    <button id="copy" onclick="copy('output')">Copy</button>
+    <button id="copy" onclick="onCopy('output')">Copy</button>
     <a href="" id="open" target="_blank"><button>Open in New Tab</button></a>
     <p class="alert">Copied</p>
   </div>

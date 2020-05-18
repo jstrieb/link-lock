@@ -107,6 +107,11 @@ footer p {
 
 
 /* Advanced settings */
+#advanced-label {
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
 .advanced {
   display: none;
   flex-flow: row wrap;
@@ -122,6 +127,7 @@ footer p {
   width: auto;
   margin-right: 20px;
   white-space: nowrap;
+  cursor: pointer;
 }
 
 .advanced .labeled-input input {
@@ -136,5 +142,6 @@ footer p {
 }
 
 .alert {
-  display: none;
+  opacity: 0;
+  transition: opacity 0.25s;
 }
