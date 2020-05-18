@@ -77,6 +77,21 @@ footer p {
  * Classes
  ******************************************************************************/
 
+/* View on GitHub SVG ribbon */
+@media (max-width: 100ch) {
+  .ribbon {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+.ribbon {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+
 /* Error area */
 .red-border {
   border: 3px solid red;
