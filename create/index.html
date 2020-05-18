@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 
 <head>
+  <!-- Metadata -->
   <meta charset="utf-8" />
   <meta name="author" content="Jacob Strieb" />
   <meta name="description" content="Password protect links using AES in the browser." />
@@ -9,8 +10,10 @@
 
   <title>Link Lock - Password-protect links</title>
 
+  <!-- Styles -->
   <link rel="stylesheet" href="../style.css" type="text/css" />
 
+  <!-- Scripts -->
   <script type="text/javascript" src="../b64.js"></script>
   <script type="text/javascript" src="../api.js"></script>
   <script type="text/javascript">
@@ -19,6 +22,8 @@
       document.querySelector("#errortext").innerText = `Error: ${text}`;
     }
 
+
+    // Run when the <body> loads
     function main() {
       // Fail if the b64 library or API was not loaded
       if (!("b64" in window)) {
@@ -52,6 +57,7 @@
     <button onclick="main()">Try again</button>
   </div>
 
+  <!-- Project description -->
   <h1>Link Lock</h1>
   <div>
     <p>Link Lock adds passwords to links. Enter a link and password below, and click "Encrypt" to generate a locked link. When someone visits a locked link, it will not unlock unless they enter the correct password. If the password is correct, they will be redirected to the original link.</p>
@@ -60,6 +66,7 @@
     <p>Link Lock runs entirely in the browser, so nobody can see the links you are locking and unlocking. No data is ever stored on any server. There is no tracking, no spying, and no cookies. If you do not trust it, read the source code, or run your own instance.</p>
   </div>
 
+  <!-- Main form -->
   <div class="form">
     <div class="labeled-input">
       <label for="url">link</label>
@@ -80,6 +87,7 @@
       </div>
     </div>
 
+    <!-- Advanced options (JavaScript-activated dropdown) -->
     <label onclick="advanced()" id="advanced-label" for="advanced">&#x25B8; advanced</label>
     <div class="advanced" id="advanced">
       <div class="labeled-input">
@@ -96,6 +104,7 @@
 
   <hr />
 
+  <!-- Output area -->
   <div class="output">
     <label for="output">output</label>
     <input type="text" id="output" readonly/>
@@ -104,6 +113,7 @@
     <p class="alert">Copied</p>
   </div>
 
+  <!-- Page footer -->
   <footer>
   <hr />
   <p class="copyright">Created by <a href="https://jstrieb.github.io">Jacob Strieb</a>.</p>

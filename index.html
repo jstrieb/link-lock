@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 
 <head>
+  <!-- Metadata -->
   <meta charset="utf-8" />
   <meta name="author" content="Jacob Strieb" />
   <meta name="description" content="Password protect links using AES in the browser." />
@@ -9,8 +10,10 @@
 
   <title>Link Lock - Password-protect links</title>
 
+  <!-- Styles -->
   <link rel="stylesheet" href="style.css" type="text/css" />
 
+  <!-- Scripts -->
   <script type="text/javascript" src="b64.js"></script>
   <script type="text/javascript" src="api.js"></script>
   <script type="text/javascript">
@@ -19,6 +22,7 @@
       errorDisplay.innerText = `Error: ${text}`;
     }
 
+    // Run when the <body> loads
     function main() {
       if (window.location.hash) {
         // Fail if the b64 library or API was not loaded
