@@ -87,7 +87,11 @@
         try {
           // Extra check to make sure the URL is valid. Probably shouldn't fail.
           new URL(url);
-          window.location.replace(url);
+          // IMPORTANT NOTE: must use window.location.href instead of the (in
+          // my opinion more proper) window.location.replace. If you use
+          // replace, it causes Chrome to change the icon of a bookmarked link
+          // to update it to the unlocked destination.
+          window.location.href = url;
         } catch {
           error("A corrupted URL was encrypted. Cannot redirect.");
           console.log(url);
