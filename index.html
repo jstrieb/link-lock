@@ -18,8 +18,8 @@
   <script type="text/javascript" src="api.js"></script>
   <script type="text/javascript">
     function error(text) {
-      let errorDisplay = document.querySelector("#errortext");
-      errorDisplay.innerText = `Error: ${text}`;
+      document.querySelector(".error").style.display = "inherit";
+      document.querySelector("#errortext").innerText = `Error: ${text}`;
     }
 
     // Run when the <body> loads
@@ -79,7 +79,7 @@
   </noscript>
 
   <!-- Display errors in a big red box -->
-  <div class="error red-border">
+  <div class="error red-border" style="display: none">
     <p id="errortext">Error</p>
     <button onclick="main()">Try again</button>
   </div>
