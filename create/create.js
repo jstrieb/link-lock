@@ -46,6 +46,37 @@ function validateInputs() {
 }
 
 
+// Perform encryption based on parameters, and return a base64-encoded JSON
+// object containing all of the relevant data for use in the URL fragment.
+async function generateFragment(url, passwd, hint, useRandomSalt, useRandomIv) {
+  const api = apiVersions[LATEST_API_VERSION];
+
+  const salt = useRandomSalt ? await api.randomSalt() : null;
+  const iv = useRandomIv ? await api.randomIv() : null;
+  const encrypted = await api.encrypt(url, passwd, salt, iv);
+  const output = {
+    v: LATEST_API_VERSION,
+    e: b64.binaryToBase64(new Uint8Array(encrypted))
+  }
+
+  // Add the hint if there is one
+  if (hint != "") {
+    output["h"] = hint;
+  }
+
+  // Add the salt and/or initialization vector if randomly generated
+  if (useRandomSalt) {
+    output["s"] = b64.binaryToBase64(salt);
+  }
+  if (useRandomIv) {
+    output["i"] = b64.binaryToBase64(iv);
+  }
+
+  // Return the base64-encoded output
+  return b64.encode(JSON.stringify(output));
+}
+
+
 
 /*******************************************************************************
  * Main UI Functions
@@ -56,6 +87,8 @@ function onAdvanced() {
   let label = document.querySelector("#advanced-label");
   let advanced = document.querySelector(".advanced");
   if (advanced.style.display == "none" || advanced.style.display == "") {
+    // Note: innerHTML used instead of innerText so that the entity could be
+    // used rather than having to literally put the unicode in. Same below.
     label.innerHTML = "&#x25BE; advanced";
     advanced.style.display = "flex";
   } else {
@@ -66,7 +99,7 @@ function onAdvanced() {
 
 
 // Activated when the "Encrypt" button is pressed
-function onEncrypt() {
+async function onEncrypt() {
   if (!validateInputs()) {
     return;
   }
@@ -83,11 +116,20 @@ function onEncrypt() {
 
   // Initialize values for encryption
   const url = document.querySelector("#url").value;
-  // TODO: Finish this
+  const useRandomIv = document.querySelector("#iv").checked;
+  const useRandomSalt = document.querySelector("#salt").checked;
 
-  const output = "foobar";
+  const hint = document.querySelector("#hint").value
+
+  const encrypted = await generateFragment(url, password, hint, useRandomSalt,
+      useRandomIv);
+  const output = `https://jstrieb.github.io/link-lock/#${encrypted}`;
+
   document.querySelector("#output").value = output;
   highlight("output");
+
+  // Adjust "Open in New Tab" link
+  document.querySelector("#open").href = output;
 }
 
 

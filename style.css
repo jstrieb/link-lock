@@ -60,11 +60,12 @@ hr {
   margin-top: 3em;
   margin-bottom: 3em;
   border: 0;
-  border-top: 0.5px solid black;
+  border-top: 0.5px solid rgba(200, 200, 200, 1);
 }
 
 footer hr {
   margin-bottom: 1em;
+  border-top: 0.5px solid black;
 }
 
 footer p {
@@ -138,7 +139,7 @@ footer p {
 
 /* Output area */
 .output input {
-  background: rgb(235, 235, 235);
+  background: rgba(235, 235, 235, 1);
 }
 
 .alert {
