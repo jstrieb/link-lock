@@ -69,9 +69,9 @@
         let hint, password;
         if ("h" in params) {
           hint = params["h"];
-          password = prompt(`Please enter the password\n\nHint: ${hint}`);
+          password = prompt(`Please enter the password to unlock the link.\n\nHint: ${hint}`);
         } else {
-          password = prompt("Please enter the password");
+          password = prompt("Please enter the password to unlock the link.");
         }
 
         // Decrypt and redirect if possible
