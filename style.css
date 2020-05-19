@@ -50,6 +50,7 @@ input, textarea {
   box-sizing: border-box;
   width: 100%;
   resize: none;
+  font-family: sans-serif;
 }
 
 input[type="checkbox"] {
