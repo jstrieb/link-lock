@@ -42,13 +42,14 @@ label {
   margin-bottom: 5px;
 }
 
-input {
+input, textarea {
   padding: 10px;
   border: 0.5px solid black;
   border-radius: 3px;
   margin-bottom: 15px;
   box-sizing: border-box;
   width: 100%;
+  resize: none;
 }
 
 input[type="checkbox"] {
