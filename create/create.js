@@ -149,3 +149,17 @@ function onCopy(id) {
   output.selectionEnd = output.selectionStart;
   output.blur();
 }
+
+
+// Activated when a user tries to disable randomization of the IV -- adds a
+// scary warning that will frighten off anyone with common sense, unless they
+// desperately need the URL to be a few characters shorter.
+function onIvCheck(checkbox) {
+  if (!checkbox.checked) {
+    checkbox.checked = !confirm("Please only disable initialization vector "
+        + "randomization if you know what you are doing. Disabling this is "
+        + "detrimental to the security of your encrypted link, and it only "
+        + "saves 20-25 characters in the URL length.\n\nPress \"Cancel\" unless "
+        + "you are very sure you know what you are doing.");
+  }
+}
