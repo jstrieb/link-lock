@@ -42,6 +42,8 @@ versions of Link Lock are updated to be more secure. Please read the code
 ([`api.js`](https://github.com/jstrieb/link-lock/blob/master/api.js) in
 particular) for more information.
 
+Read the Hacker News discussion [here](https://news.ycombinator.com/item?id=23242290).
+
 
 
 ## Examples
@@ -94,4 +96,4 @@ me to build a secure encryption application. In particular:
 
 ## Acknowledgments
 
-Thank you to those who offered feedback on this program before its release!
+Thank you to those who offered feedback on this program before its release! Thanks also to the Hacker News second-chance pool!
