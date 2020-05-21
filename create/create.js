@@ -32,13 +32,24 @@ function validateInputs() {
 
   // Extra check for older browsers for URL input. Not sure if necessary, since
   // older browsers without built-in HTML5 validation may fail elsewhere.
-  let url = document.querySelector("#url");
+  const url = document.querySelector("#url");
+  let urlObj;
   try {
-    new URL(url.value);
+    urlObj = new URL(url.value);
   } catch {
     if (!("reportValidity" in url)) {
-      alert("URL invalid. Make sure to include 'http://' at the beginning.");
+      alert("URL invalid. Make sure to include 'http://' or 'https://' at the "
+          + "beginning.");
     }
+    return false;
+  }
+
+  // Check for non-HTTP protocols; blocks them to prevent XSS attacks
+  if (!(urlObj.protocol == "http:" || urlObj.protocol == "https:")) {
+    url.setCustomValidity("The link uses a non-hypertext protocol, which is "
+        + "not allowed. The URL begins with " + urlObj.protocol + " and may be "
+        + "malicious.");
+    url.reportValidity();
     return false;
   }
 

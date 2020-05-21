@@ -97,3 +97,7 @@ me to build a secure encryption application. In particular:
 ## Acknowledgments
 
 Thank you to those who offered feedback on this program before its release! Thanks also to the Hacker News second-chance pool!
+
+Thanks to [@IAmMandatory](https://twitter.com/iammandatory) for discovering a
+reflected XSS vulnerability resulting from allowing non-hypertext protocols in
+the URL. The vulnerability has since been fixed.

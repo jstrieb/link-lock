@@ -83,7 +83,7 @@
   <div class="form">
     <div class="labeled-input">
       <label for="url">link</label>
-      <input type="url" id="url" placeholder="" oninvalid="this.setCustomValidity('Please enter a valid URL. Make sure to include \'http://\' at the beginning.')" oninput="this.setCustomValidity('')" autofocus required />
+      <input type="url" id="url" placeholder="" oninvalid="if (!this.validity.customError) this.setCustomValidity('Please enter a valid URL. Make sure to include \'http://\' or \'https://\' at the beginning.')" oninput="this.setCustomValidity('')" autofocus required />
     </div>
     <div class="labeled-input hint">
       <label for="url">hint (optional)</label>

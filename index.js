@@ -65,11 +65,19 @@ async function main() {
 
     try {
       // Extra check to make sure the URL is valid. Probably shouldn't fail.
-      new URL(url);
+      let urlObj = new URL(url);
+
+      // Prevent XSS by making sure only HTTP URLs are used
+      if (!(urlObj.protocol == "http:" || urlObj.protocol == "https:")) {
+        error(`The link uses a non-hypertext protocol, which is not allowed. `
+            + `The URL begins with "${urlObj.protocol}" and may be malicious.`);
+        return;
+      }
+
       // IMPORTANT NOTE: must use window.location.href instead of the (in my
       // opinion more proper) window.location.replace. If you use replace, it
       // causes Chrome to change the icon of a bookmarked link to update it to
-      // the unlocked destination.
+      // the unlocked destination. This is dangerous information leakage.
       window.location.href = url;
     } catch {
       error("A corrupted URL was encrypted. Cannot redirect.");
