@@ -112,3 +112,10 @@ function onCopy(id) {
   output.selectionEnd = output.selectionStart;
   output.blur();
 }
+
+function main() {
+  if (window.location.hash) {
+    document.querySelector("#encrypted-url").value =
+      `https://jstrieb.github.io/link-lock/${window.location.hash}`;
+  }
+}

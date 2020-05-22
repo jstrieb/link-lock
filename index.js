@@ -60,6 +60,10 @@ async function main() {
     } catch {
       // Password is incorrect.
       error("Password is incorrect.");
+
+      // Set the "decrypt without redirect" URL appropriately
+      document.querySelector("#no-redirect").href =
+        `https://jstrieb.github.io/link-lock/decrypt/#${hash}`;
       return;
     }
 
