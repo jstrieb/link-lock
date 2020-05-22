@@ -98,6 +98,10 @@ me to build a secure encryption application. In particular:
   options (very slowly) by brute force. An example application to brute force
   Link Lock URLs can be found here:
   [https://jstrieb.github.com/link-lock/bruteforce](https://jstrieb.github.com/link-lock/bruteforce/).
+- If you receive a Link Lock URL that you do not trust, decrypt it using this
+  interface that does not automatically redirect:
+  [https://jstrieb.github.com/link-lock/decrypt](https://jstrieb.github.com/link-lock/decrypt/).
+
 
 
 
