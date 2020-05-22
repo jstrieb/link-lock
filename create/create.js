@@ -44,8 +44,11 @@ function validateInputs() {
     return false;
   }
 
-  // Check for non-HTTP protocols; blocks them to prevent XSS attacks
-  if (!(urlObj.protocol == "http:" || urlObj.protocol == "https:")) {
+  // Check for non-HTTP protocols; blocks them to prevent XSS attacks. Also
+  // allow magnet links for password-protected torrents.
+  if (!(urlObj.protocol == "http:"
+        || urlObj.protocol == "https:"
+        || urlObj.protocol == "magnet:")) {
     url.setCustomValidity("The link uses a non-hypertext protocol, which is "
         + "not allowed. The URL begins with " + urlObj.protocol + " and may be "
         + "malicious.");

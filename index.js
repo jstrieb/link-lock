@@ -67,8 +67,11 @@ async function main() {
       // Extra check to make sure the URL is valid. Probably shouldn't fail.
       let urlObj = new URL(url);
 
-      // Prevent XSS by making sure only HTTP URLs are used
-      if (!(urlObj.protocol == "http:" || urlObj.protocol == "https:")) {
+      // Prevent XSS by making sure only HTTP URLs are used. Also allow magnet
+      // links for password-protected torrents.
+      if (!(urlObj.protocol == "http:"
+            || urlObj.protocol == "https:"
+            || urlObj.protocol == "magnet:")) {
         error(`The link uses a non-hypertext protocol, which is not allowed. `
             + `The URL begins with "${urlObj.protocol}" and may be malicious.`);
         return;
