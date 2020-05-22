@@ -81,7 +81,7 @@ me to build a secure encryption application. In particular:
 
 ## Usage
 
-- Create a locked link [here](https://jstrieb.github.io/link-lock).
+- Create a locked link here: [https://jstrieb.github.io/link-lock](https://jstrieb.github.io/link-lock).
 - Use the advanced options when creating a link to make the encryption more
   secure (at the cost of a longer link).
     - By default, the initialization vector is randomized for security, but
@@ -91,6 +91,13 @@ me to build a secure encryption application. In particular:
 - To bookmark a locked link, drag it from the output box to the bookmarks bar.
   Alternatively, visit the locked link and bookmark it before entering the
   password.
+- If you lose the password, it is almost impossible to recover the original
+  link. The strong security guaranteed by encryption can be a blessing or a
+  curse if you are not careful!
+- Currently, the only way to recover a lost password is by trying all possible
+  options (very slowly) by brute force. An example application to brute force
+  Link Lock URLs can be found here:
+  [https://jstrieb.github.com/link-lock/bruteforce](https://jstrieb.github.com/link-lock/bruteforce/).
 
 
 
