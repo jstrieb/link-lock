@@ -144,6 +144,9 @@ async function onEncrypt() {
 
   // Adjust "Open in New Tab" link
   document.querySelector("#open").href = output;
+
+  // Adjust "Get TinyURL" button
+  document.querySelector("#tinyurl").value = output;
 }
 
 

@@ -126,6 +126,12 @@
     <input type="text" id="output" readonly/>
     <button id="copy" onclick="onCopy('output')">Copy</button>
     <a href="" id="open" target="_blank"><button>Open in New Tab</button></a>
+    <!-- Special incantation to make TinyURL work -->
+    <form action="http://tinyurl.com/create.php" method="get" target="_blank" style="display: inline;">
+      <input type="hidden" id="source" name="source" value="indexpage" />
+      <input type="hidden" id="tinyurl" name="url" value = "" />
+      <button>Get Shortened Link</button>
+    </form>
     <p class="alert">Copied</p>
   </div>
 
