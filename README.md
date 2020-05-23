@@ -107,11 +107,20 @@ me to build a secure encryption application. In particular:
 
 
 
+## Other Versions & Related Projects
+
+- French translation: [cacheton.site](https://cacheton.site)
+
+
+
 
 ## Acknowledgments
 
-Thank you to those who offered feedback on this program before its release! Thanks also to the Hacker News second-chance pool!
+Thank you to those who offered feedback on this program before its release. Thanks also to the Hacker News second-chance pool.
 
 Thanks to [@IAmMandatory](https://twitter.com/iammandatory) for discovering a
 reflected XSS vulnerability resulting from allowing non-hypertext protocols in
 the URL. The vulnerability has since been fixed.
+
+Thank you to Guillaume ([@gverdun](https://twitter.com/gverdun)) for translating
+Link Lock into French, and hosting a translated version.
