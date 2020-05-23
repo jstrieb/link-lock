@@ -29,6 +29,7 @@ Link Lock has many uses:
   that do not respect `robots.txt`
 - Add a password to shared Dropbox or Google Drive links
 - Share password-protected magnet links and torrents
+- [Evade censorship](#evading-censorship)
 
 Link Lock uses AES in GCM mode to securely encrypt passwords, and PBKDF2 and
 salted SHA-256 (100,000 iterations) for secure key derivation. Encryption,
@@ -104,6 +105,39 @@ me to build a secure encryption application. In particular:
 - If you receive a Link Lock URL that you do not trust, decrypt it using this
   interface that does not automatically redirect:
   [https://jstrieb.github.com/link-lock/decrypt](https://jstrieb.github.com/link-lock/decrypt/).
+
+### Evading Censorship
+
+Link Lock can be used to evade censorship. If you are concerned that sending
+links with the `jstrieb.github.io` domain name will put you at risk, just
+replace the domain with another. For example, share
+
+```
+https://wikipedia.org/#eyJ2IjoiMC4wLjEiLCJlIjoiYUgrNDhISkpBWWhkeFFMc0l0VlIzeFlma21mYlZCOFJ5Zz09In0=
+```
+
+instead of
+
+```
+https://jstrieb.github.io/link-lock/#eyJ2IjoiMC4wLjEiLCJlIjoiYUgrNDhISkpBWWhkeFFMc0l0VlIzeFlma21mYlZCOFJ5Zz09In0=
+```
+
+Any domain can be used in place of `wikipedia.org`. That way, a malicious
+third-party who clicks the altered link will be taken to a valid page, which
+helps alleviate suspicion. When sharing the password to unlock the link,
+explain how to switch out the domain name with either
+`jstrieb.github.io/link-lock`, or with the path to a local clone of Link Lock.
+Using a local copy is particularly recommended for evading censorship, since no
+request to my domain is ever made.
+
+Alternatively paste the altered link directly into the [decrypt
+page](https://jstrieb.github.io/link-lock/decrypt/). This page does not check
+the domain name of the pasted link, only the "fragment" (the part after the
+`#`). So, for example, the Wikipedia link above can be pasted directly in there
+and decrypted without changing the domain.
+
+Using a local copy of [URL Pages](https://github.com/jstrieb/urlpages) is also
+recommended. Entire web pages can be shared safely and secretly this way.
 
 
 
