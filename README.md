@@ -46,6 +46,11 @@ particular) for more information.
 
 Read the Hacker News discussion [here](https://news.ycombinator.com/item?id=23242290).
 
+Also [discussed on
+r/netsec](https://www.reddit.com/r/netsec/comments/i3n4sm/link_lock_password_protect_urls_using_aes_in_the/)
+and [discussed on
+r/programming](https://www.reddit.com/r/programming/comments/i5kpjx/link_lock_is_a_tool_for_encrypting_and_decrypting/).
+
 
 
 ## Examples
