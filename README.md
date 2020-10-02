@@ -146,6 +146,19 @@ recommended. Entire web pages can be shared safely and secretly this way.
 
 
 
+## Project Status
+
+This project is actively maintained. If there are no recent commits, it means
+that everything has been running smoothly! Even if the link storage protocol
+is updated, Link Lock is designed to be 100% backwards-compatible, so your
+locked links will never break.
+
+Even if something were to happen to me, and I could not continue to work on
+the project, Link Lock will continue to work as long as my GitHub account is
+open and the [jstrieb.github.io](https://jstrieb.github.io) domain is online.
+
+
+
 ## Other Versions & Related Projects
 
 - French translation: [cacheton.site](https://cacheton.site)
