@@ -104,17 +104,19 @@
     </div>
 
     <!-- Advanced options (JavaScript-activated dropdown) -->
-    <label onclick="onAdvanced()" id="advanced-label" for="advanced">&#x25B8; advanced</label>
-    <div class="advanced" id="advanced">
-      <div class="labeled-input">
-        <label for="iv">random initialization vector</label>
-        <input type="checkbox" id="iv" onclick="onIvCheck(this)" checked />
+    <details>
+      <summary id="advanced-label">advanced</summary>
+      <div class="advanced" id="advanced">
+        <div class="labeled-input">
+          <label for="iv">random initialization vector</label>
+          <input type="checkbox" id="iv" onclick="onIvCheck(this)" checked />
+        </div>
+        <div class="labeled-input">
+          <label for="salt">random salt</label>
+          <input type="checkbox" id="salt" />
+        </div>
       </div>
-      <div class="labeled-input">
-        <label for="salt">random salt</label>
-        <input type="checkbox" id="salt" />
-      </div>
-    </div>
+    </details>
     <button id="encrypt" onclick="onEncrypt()">Encrypt</button>
   </div>
 

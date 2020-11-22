@@ -42,6 +42,12 @@ label {
   margin-bottom: 5px;
 }
 
+summary {
+  font-variant: small-caps;
+  margin-bottom: 5px;
+  user-select: none;
+}
+
 input, textarea {
   padding: 10px;
   border: 0.5px solid black;
@@ -131,7 +137,7 @@ footer p {
 }
 
 .advanced {
-  display: none;
+  display: flex;
   flex-flow: row wrap;
 }
 
