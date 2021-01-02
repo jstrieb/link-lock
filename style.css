@@ -42,6 +42,7 @@ button {
   margin-right: 5px;
   cursor: pointer;
   font-weight: bold;
+  white-space: nowrap;
 }
 
 label {
@@ -92,6 +93,11 @@ footer p {
   pointer-events: none;
   cursor: not-allowed;
   user-select: none;
+}
+
+code {
+  font-family: monospace, monospace;
+  padding: 0 3px;
 }
 
 
@@ -212,3 +218,18 @@ footer p {
   background: rgba(235, 235, 235, 1);
   color: gray;
 }
+
+/* Buttons on the same line as inputs */
+.inline-button-container {
+  display: flex;
+  width: 100%;
+}
+
+.inline-button-container * {
+  margin: 5px;
+}
+
+.inline-button-container input {
+  margin-left: 0;
+}
+
