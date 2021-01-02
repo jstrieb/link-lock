@@ -126,11 +126,20 @@ async function onEncrypt() {
   document.querySelector("#output").value = output;
   highlight("output");
 
+  // Adjust "Hidden Bookmark" link
+  document.querySelector("#bookmark").href = `https://jstrieb.github.io/link-lock/hidden/#${encrypted}`;
+
   // Adjust "Open in New Tab" link
   document.querySelector("#open").href = output;
 
   // Adjust "Get TinyURL" button
   document.querySelector("#tinyurl").value = output;
+
+  // Scroll to the bottom so the user sees where the bookmark was created
+  window.scrollTo({
+    top: document.body.scrollHeight,
+    behavior: "smooth",
+  });
 }
 
 

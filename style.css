@@ -17,11 +17,19 @@ body {
   padding: 15px;
   display: block;
   margin: auto;
-  max-width: 80ch;
+  max-width: 66ch;
 }
 
 p {
   text-align: justify;
+}
+
+ul, ol {
+  padding-left: 1em;
+}
+
+ol li {
+  margin-bottom: 1em;
 }
 
 button {
@@ -30,10 +38,10 @@ button {
   color: white;
   border: 0.5px solid white;
   border-radius: 5px;
-  font-weight: bold;
   margin-top: 5px;
   margin-right: 5px;
   cursor: pointer;
+  font-weight: bold;
 }
 
 label {
@@ -78,6 +86,12 @@ footer hr {
 
 footer p {
   text-align: center;
+}
+
+*[aria-disabled="true"] {
+  pointer-events: none;
+  cursor: not-allowed;
+  user-select: none;
 }
 
 
@@ -168,4 +182,33 @@ footer p {
 .alert {
   opacity: 0;
   transition: opacity 0.25s;
+}
+
+
+/* Bookmarks that look like buttons, but different */
+.bookmark {
+  padding: 11px;
+  background: none;
+  color: rgb(95, 158, 160);
+  border: 3px solid;
+  border-radius: 5px;
+  font-weight: bold;
+  text-decoration: none;
+  margin-top: 5px;
+  margin-right: 5px;
+  cursor: pointer;
+  display: inline-block;
+  margin: auto;
+  text-align: center;
+}
+
+.bookmark:hover {
+  background: rgb(95, 158, 160);
+  color: white;
+  border: 3px solid rgb(95, 158, 160);
+}
+
+.bookmark[aria-disabled="true"] {
+  background: rgba(235, 235, 235, 1);
+  color: gray;
 }
