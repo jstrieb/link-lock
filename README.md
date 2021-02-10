@@ -162,6 +162,8 @@ open and the [jstrieb.github.io](https://jstrieb.github.io) domain is online.
 ## Other Versions & Related Projects
 
 - French translation: [cacheton.site](https://cacheton.site)
+- German translation:
+  [ebildungslabor.github.io/link-lock](https://ebildungslabor.github.io/link-lock/)
 
 
 
@@ -175,4 +177,6 @@ reflected XSS vulnerability resulting from allowing non-hypertext protocols in
 the URL. The vulnerability has since been fixed.
 
 Thank you to Guillaume ([@gverdun](https://twitter.com/gverdun)) for translating
-Link Lock into French, and hosting a translated version.
+Link Lock into French, and hosting a translated version. Likewise, thanks to
+Nele Hirsch ([@eBildungslabor](https://github.com/eBildungslabor/)) for
+translating and hosting a German version!
