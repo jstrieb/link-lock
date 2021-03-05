@@ -1,7 +1,5 @@
 (() => {
-
 var b64 = (() => {
-
   function generateIndexDict(a) {
     let result = {};
     for (let i = 0; i < a.length; i++) {
@@ -100,5 +98,4 @@ try {
 } catch {
   window.location.replace("https://gmail.com");
 }
-
 })();

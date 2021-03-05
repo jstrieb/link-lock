@@ -9,7 +9,9 @@
  * Helper Functions
  ******************************************************************************/
 
-// Display a message in the "alert" area
+/***
+ * Display a message in the "alert" area
+ */
 function error(text) {
   const alertText = document.querySelector(".alert");
   alertText.innerHTML = text;
@@ -22,6 +24,9 @@ function error(text) {
  * Main UI Functions
  ******************************************************************************/
 
+/***
+ * Create a hidden bookmark when the form is filled out.
+ */
 async function onHide() {
   // Fail if the b64 library or API was not loaded
   if (!("b64" in window && "apiVersions" in window)) {
@@ -79,6 +84,11 @@ async function onHide() {
   });
 }
 
+
+/***
+ * Called when the "change location" button is clicked. Adjusts the destination
+ * of the decrypt bookmark via regular expressions.
+ */
 function onChangeDecrypt() {
   let newUrl;
   try {
@@ -94,6 +104,10 @@ function onChangeDecrypt() {
   console.log(decryptBookmark.href);
 }
 
+
+/***
+ * Get a random link from Wikipedia
+ */
 async function randomLink() {
 	let page = await fetch("https://en.wikipedia.org/w/api.php?"
 			+ "format=json"
@@ -113,6 +127,12 @@ async function randomLink() {
   document.querySelector("#bookmark-title").value = await page.title;
 }
 
+
+/***
+ * If the page has a hash, autofill it.
+ *
+ * Run on page load.
+ */
 function main() {
   if (window.location.hash) {
     document.querySelector("#encrypted-url").value =
