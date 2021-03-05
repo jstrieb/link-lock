@@ -7,7 +7,7 @@ var b64 = (function() {
 
   // Generate a dictionary with {key: val} as {character: index in input string}
   function generateIndexDict(a) {
-    let result = {}
+    let result = {};
     for (let i = 0; i < a.length; i++) {
       result[a[i]] = i;
     }
@@ -57,7 +57,7 @@ var b64 = (function() {
       let bytes = new Uint8Array(length + added);
       bytes.set(originalBytes);
 
-      let output = ""
+      let output = "";
       for (let i = 0; i < bytes.length; i += 3) {
         // Convert 3 8-bit bytes into 4 6-bit indices and get a character from
         // the master list based on each 6-bit index
@@ -87,7 +87,7 @@ var b64 = (function() {
     // an error if the input string does not appear to be a valid base64
     // encoding. Attempts to add padding to un-padded base64 strings.
     base64ToBinary: function(s) {
-      let bytes = []
+      let bytes = [];
 
       // Base64 strings have at most 2 padding characters to make their length
       // a multiple of 4, so they could be missing up to 2 characters and still
