@@ -59,8 +59,13 @@ async function onHide() {
   try {
     let _ = JSON.parse(b64.decode(hash));
   } catch {
-    error("The hidden link appears corrupted. It must be a <a href=\"https://jstrieb.github.io/link-lock\">Link Lock</a> URL.");
-    return;
+    let hashData = {
+      unencrypted: true,
+      url: hiddenUrl.toString(),
+    };
+
+    hiddenUrl.hash = b64.encode(JSON.stringify(hashData));
+    document.querySelector("#encrypted-url").value = hiddenUrl.toString();
   }
 
   let output = document.querySelector("#output");
