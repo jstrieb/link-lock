@@ -3,6 +3,9 @@
 [Password-protect URLs using AES in the
 browser.](https://jstrieb.github.io/link-lock)
 
+Link Lock now supports secure, hidden bookmarks via bookmark knocking! Read
+more [here](https://jstrieb.github.io/projects/hidden-bookmarks).
+
 
 
 ## About
@@ -91,6 +94,8 @@ me to build a secure encryption application. In particular:
 ## Usage
 
 - Create a locked link here: [https://jstrieb.github.io/link-lock](https://jstrieb.github.io/link-lock).
+- Once you have a locked link, create a hidden bookmark here:
+  <https://jstrieb.github.io/link-lock/hidden>.
 - Use the advanced options when creating a link to make the encryption more
   secure (at the cost of a longer link).
     - By default, the initialization vector is randomized for security, but
