@@ -179,15 +179,40 @@ open and the [jstrieb.github.io](https://jstrieb.github.io) domain is online.
 
 ## Acknowledgments
 
-Thank you to those who offered feedback on this program before its release. Thanks also to the Hacker News second-chance pool.
+Thank you to those who offered feedback on this program before its release.
+Thanks also to the Hacker News second-chance pool.
 
 Thanks to [@IAmMandatory](https://twitter.com/iammandatory) for discovering a
 reflected XSS vulnerability resulting from allowing non-hypertext protocols in
 the URL. The vulnerability has since been fixed.
 
-Thank you to Guillaume ([@gverdun](https://twitter.com/gverdun)) for translating
-Link Lock into French, and hosting a translated version. Likewise, thanks to
-Nele Hirsch ([@eBildungslabor](https://github.com/eBildungslabor/)) for
-translating and hosting a German version, and to Piotr Wereszczyński 
-([@YourSenseiCreeper](https://github.com/YourSenseiCreeper)) for translating and
-hosting a Polish version.
+Thank you to Guillaume ([@gverdun](https://twitter.com/gverdun)) for
+translating Link Lock into French, and hosting a translated version. Likewise,
+thanks to Nele Hirsch ([@eBildungslabor](https://github.com/eBildungslabor/))
+for translating and hosting a German version, and to Piotr Wereszczyński
+([@YourSenseiCreeper](https://github.com/YourSenseiCreeper)) for translating
+and hosting a Polish version.
+
+
+
+# Support the Project
+
+There are a few things you can do to support the project:
+
+- Star the repository (and follow me on GitHub for more)
+- Share and upvote on sites like Twitter, Reddit, and Hacker News
+- Report any bugs, glitches, or errors that you find
+
+These things motivate me to to keep sharing what I build, and they provide
+validation that my work is appreciated! They also help me improve the project.
+Thanks in advance!
+
+If you are insistent on spending money to show your support, I encourage you to
+instead make a generous donation to one of the following organizations. By
+advocating for Internet freedoms, organizations like these help me to feel
+comfortable releasing work publicly on the Web.
+
+- [Electronic Frontier Foundation](https://supporters.eff.org/donate/)
+- [Signal Foundation](https://signal.org/donate/)
+- [Mozilla](https://donate.mozilla.org/en-US/)
+- [The Internet Archive](https://archive.org/donate/index.php)
