@@ -8,6 +8,7 @@ function error(text) {
 function main() {
   document.querySelector(".form").style.display = "inherit";
   document.querySelector("#password").value = "";
+  document.querySelector("#password").focus();
   document.querySelector(".error").style.display = "none";
   document.querySelector("#errortext").innerText = "";
 
@@ -57,8 +58,15 @@ function main() {
       document.querySelector("#hint").innerText = "Hint: " + hint;
     }
 
-    document.querySelector("#unlockbutton").addEventListener("click", async () => {
-      password = document.querySelector("#password").value;
+    const unlockButton = document.querySelector("#unlockbutton");
+    const passwordPrompt = document.querySelector("#password");
+    passwordPrompt.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
+        unlockButton.click();
+      }
+    });
+    unlockButton.addEventListener("click", async () => {
+      password = passwordPrompt.value;
 
       // Decrypt and redirect if possible
       let url;
