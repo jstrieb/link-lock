@@ -1,10 +1,16 @@
 function error(text) {
+  document.querySelector(".form").style.display = "none";
   document.querySelector(".error").style.display = "inherit";
   document.querySelector("#errortext").innerText = `Error: ${text}`;
 }
 
 // Run when the <body> loads
-async function main() {
+function main() {
+  document.querySelector(".form").style.display = "inherit";
+  document.querySelector("#password").value = "";
+  document.querySelector(".error").style.display = "none";
+  document.querySelector("#errortext").innerText = "";
+
   if (window.location.hash) {
     // Fail if the b64 library or API was not loaded
     if (!("b64" in window)) {
@@ -48,53 +54,55 @@ async function main() {
     let hint, password;
     if ("h" in params) {
       hint = params["h"];
-      password = prompt(`Please enter the password to unlock the link.\n\nHint: ${hint}`);
-    } else {
-      password = prompt("Please enter the password to unlock the link.");
+      document.querySelector("#hint").innerText = "Hint: " + hint;
     }
 
-    // Decrypt and redirect if possible
-    let url;
-    try {
-      url = await api.decrypt(encrypted, password, salt, iv);
-    } catch {
-      // Password is incorrect.
-      error("Password is incorrect.");
+    document.querySelector("#unlockbutton").addEventListener("click", async () => {
+      password = document.querySelector("#password").value;
 
-      // Set the "decrypt without redirect" URL appropriately
-      document.querySelector("#no-redirect").href =
-        `https://jstrieb.github.io/link-lock/decrypt/#${hash}`;
+      // Decrypt and redirect if possible
+      let url;
+      try {
+        url = await api.decrypt(encrypted, password, salt, iv);
+      } catch {
+        // Password is incorrect.
+        error("Password is incorrect.");
 
-      // Set the "create hidden bookmark" URL appropriately
-      document.querySelector("#hidden").href =
-        `https://jstrieb.github.io/link-lock/hidden/#${hash}`;
-      return;
-    }
+        // Set the "decrypt without redirect" URL appropriately
+        document.querySelector("#no-redirect").href =
+          `https://jstrieb.github.io/link-lock/decrypt/#${hash}`;
 
-    try {
-      // Extra check to make sure the URL is valid. Probably shouldn't fail.
-      let urlObj = new URL(url);
-
-      // Prevent XSS by making sure only HTTP URLs are used. Also allow magnet
-      // links for password-protected torrents.
-      if (!(urlObj.protocol == "http:"
-            || urlObj.protocol == "https:"
-            || urlObj.protocol == "magnet:")) {
-        error(`The link uses a non-hypertext protocol, which is not allowed. `
-            + `The URL begins with "${urlObj.protocol}" and may be malicious.`);
+        // Set the "create hidden bookmark" URL appropriately
+        document.querySelector("#hidden").href =
+          `https://jstrieb.github.io/link-lock/hidden/#${hash}`;
         return;
       }
 
-      // IMPORTANT NOTE: must use window.location.href instead of the (in my
-      // opinion more proper) window.location.replace. If you use replace, it
-      // causes Chrome to change the icon of a bookmarked link to update it to
-      // the unlocked destination. This is dangerous information leakage.
-      window.location.href = url;
-    } catch {
-      error("A corrupted URL was encrypted. Cannot redirect.");
-      console.log(url);
-      return;
-    }
+      try {
+        // Extra check to make sure the URL is valid. Probably shouldn't fail.
+        let urlObj = new URL(url);
+
+        // Prevent XSS by making sure only HTTP URLs are used. Also allow magnet
+        // links for password-protected torrents.
+        if (!(urlObj.protocol == "http:"
+              || urlObj.protocol == "https:"
+              || urlObj.protocol == "magnet:")) {
+          error(`The link uses a non-hypertext protocol, which is not allowed. `
+              + `The URL begins with "${urlObj.protocol}" and may be malicious.`);
+          return;
+        }
+
+        // IMPORTANT NOTE: must use window.location.href instead of the (in my
+        // opinion more proper) window.location.replace. If you use replace, it
+        // causes Chrome to change the icon of a bookmarked link to update it to
+        // the unlocked destination. This is dangerous information leakage.
+        window.location.href = url;
+      } catch {
+        error("A corrupted URL was encrypted. Cannot redirect.");
+        console.log(url);
+        return;
+      }
+    });
   } else {
     // Otherwise redirect to the creator
     window.location.replace("./create");
