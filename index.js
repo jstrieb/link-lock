@@ -6,13 +6,13 @@ function error(text) {
 
 // Run when the <body> loads
 function main() {
-  document.querySelector(".form").style.display = "inherit";
-  document.querySelector("#password").value = "";
-  document.querySelector("#password").focus();
-  document.querySelector(".error").style.display = "none";
-  document.querySelector("#errortext").innerText = "";
-
   if (window.location.hash) {
+    document.querySelector(".form").style.display = "inherit";
+    document.querySelector("#password").value = "";
+    document.querySelector("#password").focus();
+    document.querySelector(".error").style.display = "none";
+    document.querySelector("#errortext").innerText = "";
+
     // Fail if the b64 library or API was not loaded
     if (!("b64" in window)) {
       error("Base64 library not loaded.");
