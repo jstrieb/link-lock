@@ -66,6 +66,7 @@ input, textarea {
   width: 100%;
   resize: none;
   font-family: sans-serif;
+  font-size: 0.9em;
 }
 
 input[type="checkbox"] {
