@@ -1,0 +1,258 @@
+/* General Styles */
+body, html {
+  margin: 0;
+  padding: 0;
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+  font-family: 'Inter', sans-serif;
+  text-align: center;
+  line-height: 1.6;
+  transition: all 0.3s;
+}
+
+h1 {
+  font-size: 2.2em;
+  margin: 1rem 0;
+}
+
+hr {
+  border: none;
+  height: 1px;
+  background-color: #444;
+  margin: 2rem 0;
+}
+
+a {
+  color: #3ea6ff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  padding: 2rem 0;
+}
+
+.copyright {
+  font-size: 0.9em;
+  color: #888;
+}
+
+.error {
+  padding: 1rem;
+  margin: 1rem auto;
+  max-width: 500px;
+  background-color: #ff4d4d;
+  color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.error button {
+  background-color: white;
+  color: #ff4d4d;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.error button:hover {
+  background-color: #f2f2f2;
+}
+
+.noscript {
+  border: 3px solid red;
+  padding: 2em;
+  margin: 1rem auto;
+  max-width: 600px;
+  background-color: #2e2e2e;
+  color: #f0f0f0;
+  border-radius: 8px;
+}
+
+.ribbon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: 0;
+}
+
+.alert {
+  display: none;
+  font-size: 0.9em;
+  color: #4caf50;
+}
+
+/* Form Styles */
+.form {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: #292929;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  text-align: left;
+}
+
+.labeled-input {
+  margin: 1rem 0;
+}
+
+.labeled-input label {
+  text-transform: uppercase;
+  font-size: 0.8em;
+  color: #888;
+  margin-bottom: 0.3rem;
+  display: block;
+}
+
+.labeled-input input,
+.labeled-input textarea {
+  width: 100%;
+  padding: 0.7rem;
+  background-color: #383838;
+  border: none;
+  border-radius: 4px;
+  color: #e0e0e0;
+  outline: none;
+  font-size: 0.9em;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.labeled-input input:focus,
+.labeled-input textarea:focus {
+  background-color: #444;
+}
+
+.split-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.split-row .labeled-input {
+  flex: 0 0 48%;
+}
+
+.hint textarea {
+  resize: none;
+  height: 3em;
+}
+
+.details summary {
+  cursor: pointer;
+  color: #3ea6ff;
+  margin-top: 1rem;
+}
+
+.details .advanced {
+  margin-top: 1rem;
+}
+
+.details .advanced .labeled-input {
+  display: flex;
+  justify-content: space-between;
+}
+
+.details .advanced label {
+  flex: 1;
+}
+
+.details .advanced input[type="checkbox"] {
+  flex: 0;
+  transition: all 0.3s;
+}
+
+/* Buttons */
+button {
+  background-color: #3ea6ff;
+  border: none;
+  padding: 0.7rem 1.2rem;
+  margin: 0.5rem 0;
+  cursor: pointer;
+  color: white;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  text-transform: uppercase;
+  transition: all 0.3s;
+}
+
+button:hover {
+  background-color: #338fdd;
+}
+
+button:active {
+  background-color: #2975ba;
+}
+
+#copy,
+#bookmark button,
+#open button {
+  margin-left: 1rem;
+}
+
+button[disabled] {
+  background-color: #666;
+  cursor: not-allowed;
+}
+
+/* Output Area */
+.output {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: #292929;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  text-align: left;
+}
+
+.output label {
+  text-transform: uppercase;
+  font-size: 0.8em;
+  color: #888;
+  margin-bottom: 0.3rem;
+  display: block;
+}
+
+.output input {
+  width: 100%;
+  padding: 0.7rem;
+  background-color: #383838;
+  border: none;
+  border-radius: 4px;
+  color: #e0e0e0;
+  outline: none;
+  font-size: 0.9em;
+  margin-bottom: 1rem;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.output input:focus {
+  background-color: #444;
+}
+
+/* Advanced Options */
+details summary {
+  color: #3ea6ff;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 0.8em;
+}
+
+details[open] summary {
+  margin-bottom: 1rem;
+}
+
+details .advanced .labeled-input {
+  margin: 0.5rem 0;
+}
+
+details .advanced input[type="checkbox"] {
+  outline: none;
+  cursor: pointer;
+}
