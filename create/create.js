@@ -133,7 +133,7 @@ async function onEncrypt() {
   document.querySelector("#open").href = output;
 
   // Adjust "Get TinyURL" button
-  document.querySelector("#tinyurl").value = output;
+  // document.querySelector("#tinyurl").value = output;
 
   // Scroll to the bottom so the user sees where the bookmark was created
   window.scrollTo({
