@@ -1,151 +1,156 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
-
+<html lang="tr">
 <head>
-  <!-- Metadata -->
-  <meta charset="utf-8" />
-  <meta name="author" content="Jacob Strieb" />
-  <meta name="description" content="Password protect links using AES in the browser." />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-
-  <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
-
-  <title>Link Lock - Password-protect links</title>
-
-  <!-- Styles -->
-  <link rel="stylesheet" href="../style.css" type="text/css" />
-
-  <!-- Scripts -->
-  <script type="text/javascript" src="../b64.js"></script>
-  <script type="text/javascript" src="../api.js"></script>
-  <script type="text/javascript">
-    function error(text) {
-      document.querySelector(".error").style.display = "inherit";
-      document.querySelector("#errortext").innerText = `Error: ${text}`;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Link Lock uygulaması ile bağlantılarınızı şifreleyin ve güvenli hale getirin.">
+  <meta name="author" content="Link Lock">
+  <title>Link Lock - Şifreli Bağlantı Oluştur</title>
+  <style>
+    /* Genel stil ayarları */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-
-    // Run when the <body> loads
-    function main() {
-      // Fail if the b64 library or API was not loaded
-      if (!("b64" in window)) {
-        error("Base64 library not loaded.");
-        return;
-      }
-      if (!("apiVersions" in window)) {
-        error("API library not loaded.");
-        return;
-      }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #111;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
     }
-  </script>
-  <script type="text/javascript" src="create.js"></script>
+
+    .container {
+      background-color: #1a1a1a;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      max-width: 500px;
+      width: 100%;
+      padding: 30px;
+      text-align: center;
+    }
+
+    header h1 {
+      color: #9b59b6; /* Mor renk */
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      color: #ddd;
+      font-size: 14px;
+      margin-bottom: 30px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    label {
+      font-size: 14px;
+      font-weight: bold;
+      color: #ddd;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    input[type="url"],
+    input[type="password"],
+    input[type="text"] {
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #444;
+      background-color: #333;
+      color: #fff;
+      transition: all 0.3s ease;
+    }.
+
+    input[type="url"]:focus,
+    input[type="password"]:focus,
+    input[type="text"]:focus {
+      border-color: #9b59b6; /* Mor renk */
+      background-color: #444;
+    }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      font-size: 16px;
+      color: #fff;
+      background-color: #9b59b6; /* Mor renk */
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #8e44ad; /* Daha koyu mor */
+    }
+
+    footer {
+      margin-top: 30px;
+      font-size: 14px;
+      color: #bbb;
+    }
+
+    footer a {
+      color: #9b59b6; /* Mor renk */
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
+<body>
 
-<body onload="main()">
-  <!-- View on GitHub ribbon -->
-  <a href="https://github.com/jstrieb/link-lock" target="_blank">
-    <img class="ribbon" src="../corner-ribbon-minified.svg" alt="View on GitHub" />
-  </a>
+  <div class="container">
+    <header>
+      <h1>Link Lock</h1>
+      <p>Bağlantınızı şifreleyin, güvenli hale getirin.</p>
+    </header>
 
-  <!-- Explanation for those who do not have JavaScript enabled -->
-  <noscript>
-  <div style="border: 3px solid red; padding: 2em;">
-    <p>If you are seeing this, it means that you have JavaScript disabled. As a result, the application will not work properly for you. For example, none of the buttons will work.</p>
-
-    <p>This application is entirely programmed in JavaScript. This was done intentionally, so that all encryption and decryption happens client-side. This means the code runs as a distributed application, relying only on GitHub Pages for infrastructure. It also means that no data about locked links is ever stored on a server. The code is designed to be auditable so users can investigate what is happening behind the scenes.</p>
-
-    <p>If you still want to run the application, I encourage you to clone the <a href="https://github.com/jstrieb/link-lock">source code on GitHub</a>. That way you can disable JavaScript only for trusted files on your local machine.</p>
-  </div>
-  </noscript>
-
-  <!-- Display errors in a big red box -->
-  <div class="error red-border" style="display: none">
-    <p id="errortext">Error</p>
-    <button onclick="main()">Try again</button>
-  </div>
-
-  <!-- Project description -->
-  <h1>Link Lock</h1>
-  <div>
-    <p>Link Lock is a tool for adding a password to a link; in other words, for encrypting and decrypting URLs. When a user visits an encrypted URL, they will be prompted for a password. If the password is correct, Link Lock sends them to the hidden website. Otherwise, an error is displayed. Users can also add hints to remind them of the password.</p>
-    <p>Each encrypted URL is stored entirely within the link generated by this application. As a result, users control all the data they create with Link Lock. Nothing is ever stored on a server, and there are no cookies, tracking, or signups. View <a target="_blank" href="https://github.com/jstrieb/link-lock">on GitHub</a> for more information, including translated versions.</p>
-    <p>Link Lock has many uses, for example:</p>
-    <ul>
-      <li><a target="_blank" href="https://jstrieb.github.io/link-lock/#eyJ2IjoiMC4wLjEiLCJlIjoiU1ZBemc0NUVoeXJMR1hXYmRUMXpLSFFIa0hiR2F3SzlMaWZzWW5SL0ZiaGp1cnZqMGg5VTE0bG9kVGs3S3B0TjdhcjZ2T3FvRjJLNkxMcDByL05PZE5nUTJ3UlhVOWM2RmFJdXNGajdrNkFkTC82OVJ6dmlFV2R0dWVacFM1dS9SN2w4L3Mzc1pMTVJNeHdhTVhVenYxTjZUVkdWTGloaXc3ZXlGY093Nkp2ZVN3aGl0OW9XWW84Yk9CMkpkTTF4ZnFRSGExbEoiLCJoIjoi8J+lkSIsImkiOiI5L3pmdHFmeHdoWFh4bDc4In0=">Store private bookmarks on a shared computer</a> - Password: avocado</li>
-      <li>Add a password to shared Dropbox or Google Drive links</li>
-      <li><a target="_blank" href="https://jstrieb.github.io/link-lock/#eyJ2IjoiMC4wLjEiLCJlIjoiZEx3Yi9CNitlK0ZjM1B3ZURrbUY2NjdQWFlIV1dsS3dpclhvZmkvRXBFTXU0ZERlVkJuSmUrN1loS2JxQ3RrPSIsImgiOiIxICsgMSA9ID8iLCJpIjoiRDJYd1MyK1EzaHpuUDV1NyJ9">Implement simple CAPTCHAs</a></li>
-      <li><a target="_blank" href="https://jstrieb.github.io/link-lock/#eyJ2IjoiMC4wLjEiLCJlIjoiWWhjbG0xeE9uZTJWU2tvc3N1WERwKytyN1lscW1nMVNNemRoSUVER2xVZVBTUFZ3MFA3WTVwQXdnVFVKZkt4WHJ4Nlg1KytCU09RNlVTTlI3M244VEdTeWJGMmJFTG5wc0x6WVRtZnQ3aDFZSzJ5VW16TEpBTk5VOThqZFMvTVFNUG93cWdoRjVUVnYyRWF1VkVHVVlJeE5iT3BtaldCNWJyMWpXemMyakJTNUxZVGVSajNTbVI5UWNwWlRWWmVrbit4Rzd3VzNIcEttRTdVRWNtbkhZS2dydGVmaHp5eTJGNVd6N1NKSm55OTJPWnJUOEFHUE9XY3JUbmxYV0NsTDB5QjVsQmZnUTJkcHk4Y3RmMHNvdVlvb1l2LzQ1U3krZUNtdHl2WkVDd25IeUhwUForamxsaDhuNUV5U2N1ZVRWTmRtRmlmOFBhM0FtdUpQOTdTYWZXbzNwbUo4cU40UFYvMllQbHlwSGFtTmI1dnBBQkc2cU1yUWlLMVp3WHBUSnF4OG9NNFdVVGh3L3B5S0QzOWRNNml2RlNzQzVRUWpaVHl0ODlSNDNVOVdkRDVMWHprdlZ1bVpNSmM2WDExTkI4V0ZSKzdyOGVvVU8wR21rRkxTU0JlaDJickt3bzkwWjRlZkJHTkZiYWE2dU9SWnQzSm1YU0NSSGZyclVRQ053cU96R2pCKzBYZHJFeC9NbHd3QkFKNTIvY0EraW9IUDk5RkszUDN1MlN6Sk1uQzVVSFg1NGNDd1Z2dWdiMzAvUmNsMjZvZzFxUDU0NWJlMGFiak9wYnZ5aFp6RjhkdDNUUjJFLzBMY2dUQUg4dE5wSVAyYzJoM2d4NlJEQUNTZ25LRzlteW4xdFU4Y0IwbWMrd1NPdkxIRlVXVXhIYnpGSkR0aS9MSDg1RDFvdVRNWTFjM3BsSSsxRFFROG5lbjVrR2hmRUhELzdsSFhIY1ZWTHNCbi9HOTFJZU02T2pTeS9aZFcySGZ4d050VzR2WEE3em1FdjhYRDNHL3M2ZTVqdVdQWjV3ck5JWFdzcDVROHdUSlI3U2JQUi94VDNwUUZncW9LaDF2OXVEWGZBaE5xYStXaElzNTlaR1UzdFlkRVFOZEVLdGpIcnF1bzJkcVpuNnB4eTU1ZDJiOVBrcFRLNGh5TEtDOEc1TmN3TEE3dUIzYTNlNlZ2NjVVVHcrdS9oWTBoMy9Nb3ZJaERmT3k2aGZiN2FQaEIyMStxSGZSeWt2VlFPUFZrbE41ak5EK1hKZURialgvd0NUWXJJVm0yOFZkTHppZURob2ZpRGpJRjdyakFQNlF6dWJjaGJYRGFtbFZQWUhOaGVNMWdTeGROSGw5a1lRVE5kbjA1WlcvbVhXNkQwbHk0VkwrOHRwZzdxQjU2YTRyL3lIWHA0Q0tSUkdIaEVWQUptbmh2ZnBaWE11QWdneGVoSkRibVdVKy9VMUgwM2JicUZub2h5R0VGRUxQV2JjZ05kdDJwWU1Cdy81TVNqSkdWWWRPQk5nTUsxbHA2ZVRxRGhwTVdJT2E4a1dSYWx3RzV1bDhuQjhnUVBkcXBCYVdxc3I3V242SVZoZHdLc0FvTGtsdTlnL0JoelNlZEQxRjcyblprN2tSS2l3a3BJbVhOeW9TQk1SSFJSMURjSm9qdU1ZVWlrZ2JxM0dpR2ZqNmMwTTBlU2lyMlhJRnRCTzd2VkJyRmpZL1pvVnJBQ1kwTzJ2UVlGcHovaEprNElKN0daOUpmc3U4ajl5Umc5S3IrNFU3MFhoZHRLY1VYeEtrbCt1VDBtN1owb2puR0xWOGRtampzTVdna3ZhV0FYNkJpK3cycVJKYnVYRW5yUEN5dUZGODhiZ2k3UDNYUVhOMHZTY3h2Uk4wVktKQ1MvR2RVWTJsZ0lDSXVBWFlUVE9KTGNsRkJPQWxialRmZThoTG5saTkzQm4xcnZOamhnM0Y2UkJ2N3NQOTlzODlGT3pwcEZHeHVKS1RhNEg4Y2NSRmxMWDBWbE9kR0RhNWM0NGVTdzh5dCsxWWJndDlvMlExcWNSYVZsaVdadSs5VjdxM1pqcWIxcDdKb2FUN0pDQ1U2ZXR6b0dJWjBQT1JqL3pVNUlVQkRjYXdHZWszZ0djSDBLdDcxa1NSN0F2TWRYeTR3WVI4ZmdTTlpoR3gwSTZYczZ5Vy9oWFB1WERPRjNHTVBTRFFmNGNhUjBuc3pmYTl3MXdGMzVSYktodEVkZnIwU0NLQzhIRXFzNWdsQ0M4RmIxN04wbGtBVlFwSWFRRGJrN254TjVINEFhQ3RKbU5JNHFYUDhocUV6aVhySGhhZWNzNkVBUDBvdjg2cWp4dz09IiwiaCI6InVybHBhZ2U1IiwiaSI6InJNZ2xiSEpzK3pSL2dteFAifQ==">Encrypt entire pages</a> (via <a target="_blank" href="https://github.com/jstrieb/urlpages">URL Pages</a>) - Password: urlpage5</li>
-      <li>Post private links on public websites</li>
-      <li><a target="_blank" href="https://jstrieb.github.io/link-lock/#eyJ2IjoiMC4wLjEiLCJlIjoieVJqZnVGdlJETGFTdk4vRVYzUlg3OG9GZHRlWW81U04wcFlvSkFScFRaeXFwZTVoV1lESjFBeDVWRUswMDBNUlQ2ZVAwZ2tCTmlyaVdrYnNsVFdrZTNtNVVOVnoxSW43Z3BST1hQZDhsVmVDTkpJZi81Wm1PWFdzSDZ6dVJmdkVrald0UTRndkZBUE9VSm9id00rdnhtWGtuZW5TZ0pHeW9mMjg3L01pTERDN085NFoxTUwrMzlaNUkwdCtsaW1CaDFaNElWZ1p1QkpQUURvM2NodWZXemdTNU05Zk1FOFlxNXVUV1ZoZjVLV2VaTUR1Q0VWSmN2TjRXbDByZHl6MFpBPT0iLCJoIjoiXG5QYXNzd29yZDogdG9ycmVudGluZ19pcy1sZWdhbCEiLCJpIjoiUlIvNnJtRFhzb1lGblhiOSJ9">Share password-protected torrents and magnet links</a> - Password: torrenting_is-legal!</li>
-    </ul>
-  </div>
-
-  <hr />
-
-  <!-- Main form -->
-  <div class="form">
-    <div class="labeled-input">
-      <label for="url">secret link</label>
-      <input type="url" id="url" placeholder="https://" oninvalid="if (!this.validity.customError) this.setCustomValidity('Please enter a valid URL. Make sure to include \'http://\' or \'https://\' at the beginning.')" oninput="this.setCustomValidity('')" required />
-    </div>
-    <div class="labeled-input hint">
-      <label for="url">hint (optional)</label>
-      <textarea id="hint" rows="1"></textarea>
-    </div>
-    <div class="split-row">
-      <div class="labeled-input password">
-        <label for="password">password</label>
-        <input type="password" id="password" />
-      </div>
-      <div class="labeled-input confirm-password">
-        <label for="confirm-password">confirm password</label>
-        <input type="password" id="confirm-password" oninput="this.setCustomValidity('')" />
-      </div>
-    </div>
-
-    <!-- Advanced options (JavaScript-activated dropdown) -->
-    <details>
-      <summary id="advanced-label">advanced</summary>
-      <div class="advanced" id="advanced">
-        <div class="labeled-input">
-          <label for="iv">random initialization vector</label>
-          <input type="checkbox" id="iv" onclick="onIvCheck(this)" checked />
+    <section class="form-section">
+      <h2>Yeni Şifreli Bağlantı Oluştur</h2>
+      <form action="#" method="post">
+        <div class="form-group">
+          <label for="url">URL:</label>
+          <input type="url" id="url" name="url" placeholder="https://example.com" required>
         </div>
-        <div class="labeled-input">
-          <label for="salt">random salt</label>
-          <input type="checkbox" id="salt" checked />
+        
+        <div class="form-group">
+          <label for="password">Şifre:</label>
+          <input type="password" id="password" name="password" placeholder="Şifrenizi girin" required>
         </div>
-      </div>
-    </details>
-    <button id="encrypt" onclick="onEncrypt()">Encrypt</button>
+
+        <div class="form-group">
+          <label for="confirmPassword">Şifreyi Onayla:</label>
+          <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Şifrenizi onaylayın" required>
+        </div>
+
+        <div class="form-group">
+          <label for="hint">Şifre İpucu (isteğe bağlı):</label>
+          <input type="text" id="hint" name="hint" placeholder="Şifrenizi hatırlatacak bir ipucu">
+        </div>
+
+        <button type="submit">Bağlantıyı Şifrele</button>
+      </form>
+    </section>
+
+    <footer>
+      <p>&copy; 2025 Link Lock. Tüm hakları saklıdır. <a href="#">Gizlilik Politikası</a></p>
+    </footer>
   </div>
 
-  <hr />
-
-  <!-- Output area -->
-  <div class="output">
-    <label for="output">output</label>
-    <input type="text" id="output" readonly/>
-    <button id="copy" onclick="onCopy('output')">Copy</button>
-    <a href="../hidden" id="bookmark" target="_blank"><button>Create Hidden Bookmark</button></a>
-    <a href="" id="open" target="_blank"><button>Open in New Tab</button></a>
-    <!-- Special incantation to make TinyURL work -->
-    <!-- TODO: Re-enable if TinyURL unbans this domain -->
-    <!--
-    <form action="https://tinyurl.com/create.php" method="get" target="_blank" style="display: inline;">
-      <input type="hidden" id="source" name="source" value="indexpage" />
-      <input type="hidden" id="tinyurl" name="url" value = "" />
-      <button>Get Shortened Link</button>
-    </form>
-    -->
-    <p class="alert">Copied</p>
-  </div>
-
-  <!-- Page footer -->
-  <footer>
-  <hr />
-  <p class="copyright">Created by <a href="https://jstrieb.github.io">Jacob Strieb</a>.</p>
-  </footer>
 </body>
-
 </html>
